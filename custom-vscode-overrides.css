@@ -1,0 +1,22 @@
+/* Force JetBrains Mono in Quick Open / Ctrl+P */
+.quick-input-widget .quick-input-filter .monaco-inputbox input,
+.quick-input-widget .quick-input-filter .monaco-inputbox input::placeholder,
+.quick-input-widget .quick-input-list .monaco-list-row .label-name,
+.quick-input-widget .quick-input-list .monaco-list-row .label-description,
+.quick-input-widget .quick-input-list .monaco-list-row .monaco-icon-label,
+.quick-input-widget .quick-input-titlebar,
+.quick-input-widget .quick-input-message,
+.monaco-workbench .part.titlebar .command-center .action-item,
+.monaco-workbench .part.titlebar .command-center .action-item .action-label {
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+/* Keep editor tabs visible */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container .tab,
+.monaco-workbench .part.editor > .content .editor-group-container > .title {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}

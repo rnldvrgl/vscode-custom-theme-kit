@@ -454,7 +454,6 @@
   "material-icon-theme.saturation": 0,
   "vscode_custom_css.imports": [
     "https://raw.githubusercontent.com/rnldvrgl/rnldvrgl-vscode/main/custom-vscode.css",
-    "https://raw.githubusercontent.com/rnldvrgl/rnldvrgl-vscode/main/custom-vscode-overrides.css",
     "https://raw.githubusercontent.com/rnldvrgl/rnldvrgl-vscode/main/vscode-script.js",
   ],
   "material-icon-theme.files.color": "#42a5f5",

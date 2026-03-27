@@ -1,44 +1,33 @@
 # VS Code Sync Setup
 
-This repository stores my shared VS Code customization files:
+A ready-to-use VS Code customization pack that helps you keep a consistent editor look and behavior across devices.
 
-- `custom-vscode.css`
-- `custom-vscode-overrides.css`
-- `vscode-script.js`
-- `settings.json`
+This repository contains:
 
-## What Syncs Automatically
+- `custom-vscode.css` - main VS Code UI and editor custom styles
+- `custom-vscode-overrides.css` - optional override layer for quick tweaks
+- `vscode-script.js` - JS enhancements used by Custom CSS and JS Loader
+- `settings.json` - example VS Code settings profile
 
-VS Code Settings Sync can automatically sync these across devices when you sign in with the same GitHub or Microsoft account and turn on Settings Sync:
+## Who This Is For
 
-- Settings (`settings.json`)
-- Extensions
-- Keybindings
-- Snippets
-- UI state
-- Profiles
+Use this repository if you want to:
 
-Because of that, you usually do not need to manually copy `settings.json` to another device.
+- apply the same VS Code visual style on multiple machines
+- keep your VS Code settings in version control
+- use hosted CSS/JS files via raw GitHub URLs
 
-## What This Repo Is For
-
-This repo is mainly for:
-
-- Hosting Custom CSS and JS Loader assets over GitHub raw URLs
-- Keeping a backup copy of `settings.json`
-- Reusing the same custom styling on multiple devices
-
-## New Device Setup
-
-On a new machine:
+## Quick Start (New Device)
 
 1. Install VS Code.
-2. Sign in with the same GitHub or Microsoft account.
+2. Sign in with your GitHub or Microsoft account.
 3. Run `Settings Sync: Turn On`.
-4. Make sure `Settings`, `Extensions`, `Keybindings`, `UI State`, and `Profiles` are enabled.
-5. Install `JetBrains Mono`.
-6. Confirm the `Custom CSS and JS Loader` extension is installed.
-7. Verify these imports exist in settings:
+4. Make sure sync for `Settings`, `Extensions`, `Keybindings`, `UI State`, and `Profiles` is enabled.
+5. Install fonts:
+   - JetBrains Mono
+   - JetBrains Mono Nerd Font (recommended fallback for symbols/icons)
+6. Install the extension: **Custom CSS and JS Loader** (`be5invis.vscode-custom-css`).
+7. Add this to your VS Code settings:
 
 ```json
 "vscode_custom_css.imports": [
@@ -48,12 +37,43 @@ On a new machine:
 ]
 ```
 
-8. Run `Enable Custom CSS and JS`.
+8. Run command palette action: `Enable Custom CSS and JS`.
 9. Reload VS Code.
+
+## What Syncs Automatically
+
+VS Code Settings Sync can sync:
+
+- settings (`settings.json`)
+- extensions
+- keybindings
+- snippets
+- UI state
+- profiles
+
+Because of this, manual copying of `settings.json` is usually not required once Settings Sync is enabled.
 
 ## Important Notes
 
-- Fonts are not synced by VS Code. Install them separately on each device.
-- Custom CSS/JS patching is per-device, so you must run `Enable Custom CSS and JS` on each machine.
-- The "installation appears to be corrupt" warning is expected when Custom CSS and JS Loader patches VS Code files.
-- After each VS Code update, run `Enable Custom CSS and JS` again.
+- Fonts are **not** synced by VS Code. Install them on every device.
+- Custom CSS/JS patching is per-device. You must run `Enable Custom CSS and JS` on each machine.
+- After each VS Code update, re-run `Enable Custom CSS and JS`.
+- The "installation appears to be corrupt" warning is expected when VS Code binaries are patched by the custom CSS loader.
+
+## Troubleshooting
+
+If styles/scripts are not applied:
+
+1. Re-run `Enable Custom CSS and JS`.
+2. Confirm URLs in `vscode_custom_css.imports` are reachable.
+3. Check that your fonts are installed and available to the OS.
+4. Reload VS Code (`Developer: Reload Window`).
+
+If you want to disable customizations temporarily:
+
+1. Run `Disable Custom CSS and JS`.
+2. Reload VS Code.
+
+## Contributing
+
+Issues and pull requests are welcome. If you share improvements, include screenshots or a short before/after note when possible.

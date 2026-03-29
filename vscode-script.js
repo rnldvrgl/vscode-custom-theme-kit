@@ -20,19 +20,48 @@
         workbench.appendChild(overlay);
     }
 
-    // ── Show backdrop blur ─────────────────────────────────────────────
+    // ── Show / hide backdrop blur ──────────────────────────────────────
     function showBlur() {
         var overlay = document.getElementById('command-blur');
-        if (overlay) overlay.classList.add('visible');
+        if (overlay) {
+            overlay.classList.add('visible');
+            // Add a body class so CSS can react to palette-open state
+            document.body.classList.add('command-palette-open');
+        }
         setStickyWidgetsOpacity(0);
     }
 
-    // ── Hide backdrop blur ─────────────────────────────────────────────
     function hideBlur() {
         var overlay = document.getElementById('command-blur');
-        if (overlay) overlay.classList.remove('visible');
+        if (overlay) {
+            overlay.classList.remove('visible');
+            document.body.classList.remove('command-palette-open');
+        }
         setStickyWidgetsOpacity(1);
     }
+
+    // ── Zen: fade sidebar on idle (subtle focus mode) ──────────────────
+    var idleTimer = null;
+    var IDLE_MS = 60000; // 1 minute
+
+    function resetIdleTimer() {
+        if (idleTimer) clearTimeout(idleTimer);
+        // Restore sidebar if it was dimmed
+        var sidebar = document.querySelector('.part.sidebar');
+        if (sidebar) sidebar.style.opacity = '';
+
+        idleTimer = setTimeout(function () {
+            var sb = document.querySelector('.part.sidebar');
+            if (sb) {
+                sb.style.transition = 'opacity 1.5s ease';
+                sb.style.opacity = '0.5';
+            }
+        }, IDLE_MS);
+    }
+
+    document.addEventListener('keydown', resetIdleTimer, true);
+    document.addEventListener('mousemove', resetIdleTimer, { passive: true, capture: true });
+    resetIdleTimer();
 
     // ── Wait for the command palette widget, then observe it ───────────
     var poll = setInterval(function () {
@@ -40,7 +69,6 @@
         if (!widget) return;
 
         clearInterval(poll);
-
         initOverlay();
 
         // If already open on load

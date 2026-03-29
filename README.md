@@ -37,14 +37,14 @@ Open `custom-vscode.css` and change the `--accent` variable at the top:
 
 ```css
 :root {
-    --accent: #6366F1;          /* indigo — change to any color */
-    --accent-translucent: rgba(99, 102, 241, 0.15);
+    --accent: #818cf8;          /* indigo — change to any color */
+    --accent-dim: rgba(129, 140, 248, 0.12);
 }
 ```
 
-Update `--accent-translucent` to match (same RGB values, low alpha). The rest of the CSS adapts automatically.
+Update `--accent-dim`, `--accent-mid`, and `--accent-glow` to match (same RGB values, varying alpha). The rest of the CSS adapts automatically.
 
-If you also use the `workbench.colorCustomizations` block from `settings.json`, replace every `#6366F1` occurrence there with your new color.
+If you also use the `workbench.colorCustomizations` block from `settings.json`, replace every `#818cf8` occurrence there with your new color.
 
 ### Other Tokens
 
@@ -52,12 +52,15 @@ All design tokens are at the top of `custom-vscode.css`:
 
 | Variable | Default | What it controls |
 |---|---|---|
-| `--accent` | `#6366F1` | Primary accent color |
-| `--bg-surface` | `#2a2b38` | Surface / panel backgrounds |
-| `--bg-overlay` | `#3c3c50` | Overlay gradient start |
-| `--blur-strength` | `10px` | Backdrop blur intensity |
-| `--radius-sm/md/lg` | `8/12/16px` | Border radii |
+| `--accent` | `#818cf8` | Primary accent color |
+| `--bg-base` | `#0f1117` | Deepest background |
+| `--bg-surface` | `#161822` | Surface / panel backgrounds |
+| `--bg-raised` | `#1c1e2e` | Elevated surfaces |
+| `--bg-overlay` | `#232537` | Overlay / modal backgrounds |
+| `--blur-strength` | `12px` | Backdrop blur intensity |
+| `--radius-xs/sm/md/lg/xl` | `4/6/10/14/20px` | Border radii |
 | `--font-mono` | JetBrains Mono | Monospace font stack |
+| `--font-ui` | System UI | UI labels font stack |
 
 ## Vim Keybinds (Optional)
 

@@ -1,29 +1,62 @@
 /* ======================================================================
-   VS Code Custom Theme Kit
+   VS Code Custom Theme Kit — Modern Minimal
    ======================================================================
-   Customize the accent color and other design tokens below.
-   Change --accent to any color you like and the entire theme adapts.
+   Change --accent to any color. The entire theme adapts.
+   All design tokens are here — nothing is hardcoded below.
    ====================================================================== */
 
 :root {
-    --accent: #6366F1;
-    --accent-translucent: rgba(99, 102, 241, 0.15);
-    --bg-surface: #2a2b38;
-    --bg-overlay: #3c3c50;
-    --bg-gradient: linear-gradient(to bottom, #3c3c50, #2a2b38);
-    --blur-strength: 10px;
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
-    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
-    --font-mono: 'JetBrains Mono', 'JetBrains Mono Nerd Font', monospace;
-    --transition: 150ms ease;
-    --text-primary: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.45);
-    --sidebar-title: #9a9dbc;
+    /* ── Accent ─────────────────────────────────────────────────── */
+    --accent: #818cf8;
+    --accent-dim: rgba(129, 140, 248, 0.12);
+    --accent-mid: rgba(129, 140, 248, 0.25);
+    --accent-glow: rgba(129, 140, 248, 0.06);
+
+    /* ── Surfaces ───────────────────────────────────────────────── */
+    --bg-base: #0f1117;
+    --bg-surface: #161822;
+    --bg-raised: #1c1e2e;
+    --bg-overlay: #232537;
+    --bg-gradient: linear-gradient(165deg, #1e2033 0%, #161822 100%);
+
+    /* ── Text ───────────────────────────────────────────────────── */
+    --text-primary: #e2e4ed;
+    --text-secondary: #9194b1;
+    --text-muted: rgba(145, 148, 177, 0.55);
+    --sidebar-title: #6b6f8e;
+
+    /* ── Borders ────────────────────────────────────────────────── */
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --border-default: rgba(255, 255, 255, 0.07);
+    --border-focus: var(--accent);
+
+    /* ── Blur & Motion ──────────────────────────────────────────── */
+    --blur-strength: 12px;
+    --transition-fast: 120ms ease;
+    --transition: 180ms ease;
+    --transition-slow: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ── Radii ──────────────────────────────────────────────────── */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 20px;
+
+    /* ── Shadows ─────────────────────────────────────────────────── */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,0.03);
+    --shadow-glow: 0 0 24px rgba(129, 140, 248, 0.08);
+
+    /* ── Typography ─────────────────────────────────────────────── */
+    --font-mono: 'JetBrains Mono', 'JetBrains Mono Nerd Font', 'Fira Code', monospace;
+    --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 }
+
+/* ======================================================================
+   1. EDITOR
+   ====================================================================== */
 
 /* ── Code comment style ─────────────────────────────────────────────── */
 .mtk3 {
@@ -32,33 +65,89 @@
     color: var(--accent) !important;
 }
 
-/* ── Editor scroll shadow ───────────────────────────────────────────── */
+/* ── Scroll shadow ──────────────────────────────────────────────────── */
 .monaco-editor .scroll-decoration {
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5) !important;
     top: -6px !important;
 }
 
 /* ── Find match highlight ───────────────────────────────────────────── */
 .currentFindMatchInline {
-    background: rgba(99, 102, 241, 0.35) !important;
+    background: var(--accent-mid) !important;
+    border-radius: 2px;
 }
 
-/* ── Sidebar ────────────────────────────────────────────────────────── */
+/* ── Find widget ────────────────────────────────────────────────────── */
+.monaco-editor .find-widget {
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-md) !important;
+    border: 1px solid var(--border-default) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+/* ── Cursor styling ─────────────────────────────────────────────────── */
+.monaco-editor .cursor {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+}
+
+/* ── Selection ──────────────────────────────────────────────────────── */
+.monaco-editor .selected-text {
+    background: var(--accent-dim) !important;
+}
+
+/* ── Line highlight (subtle) ────────────────────────────────────────── */
+.monaco-editor .current-line-margin,
+.monaco-editor .current-line {
+    border: none !important;
+}
+
+/* ── Suggest widget (autocomplete) ──────────────────────────────────── */
+.monaco-editor .suggest-widget {
+    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-default) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.monaco-editor .suggest-widget .monaco-list .monaco-list-row.focused {
+    background-color: var(--accent-dim) !important;
+}
+
+/* ── Bracket match ──────────────────────────────────────────────────── */
+.monaco-editor .bracket-match {
+    border-color: var(--accent-mid) !important;
+    background: var(--accent-glow) !important;
+}
+
+/* ======================================================================
+   2. SIDEBAR
+   ====================================================================== */
+
 .part.sidebar {
     box-shadow: var(--shadow-sm);
 }
 
-/* File Explorer: selected row */
+/* Selected row */
 .part.sidebar .monaco-list .monaco-list-row.selected {
-    background-color: var(--accent-translucent) !important;
+    background-color: var(--accent-dim) !important;
     opacity: 1 !important;
-    border-top: 1px solid rgba(99, 102, 241, 0.25);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+    border-left: 2px solid var(--accent) !important;
+    border-radius: var(--radius-xs) !important;
     transition: background-color var(--transition);
 }
 
-/* Hide tree-view disclosure chevrons for a cleaner look.
-   Targets both expanded and collapsed states via .collapsible. */
+/* Focused row */
+.part.sidebar .monaco-list .monaco-list-row.focused {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    outline: none !important;
+}
+
+/* Hover row */
+.part.sidebar .monaco-list .monaco-list-row:hover:not(.selected) {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Hide tree-view disclosure chevrons for clean tree look */
 .monaco-tl-twistie.collapsible::before {
     display: none !important;
 }
@@ -75,22 +164,21 @@
 }
 
 /* File Explorer: item labels */
-.monaco-tree .monaco-tree-row .label-name,
 .monaco-list .monaco-list-row .monaco-icon-label .label-name {
     font-family: var(--font-mono) !important;
-    font-size: 14px !important;
+    font-size: 13px !important;
     font-weight: 400 !important;
-    color: var(--text-primary) !important;
+    letter-spacing: 0.01em;
 }
 
 .explorer-item-edited {
     font-family: var(--font-mono) !important;
-    font-size: 14px !important;
+    font-size: 13px !important;
 }
 
 /* Sidebar: top scroll shadow */
 .monaco-scrollable-element > .shadow.top {
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6) !important;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5) !important;
     top: -3px !important;
 }
 
@@ -99,40 +187,48 @@
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-items: center !important;
 }
 
 .composite.title h2 {
-    font-weight: bold !important;
-    font-size: 12px !important;
+    font-family: var(--font-ui) !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
     text-transform: uppercase;
+    letter-spacing: 0.08em;
     color: var(--sidebar-title) !important;
 }
 
-/* ── Scrollbar ──────────────────────────────────────────────────────── */
+/* ======================================================================
+   3. SCROLLBAR
+   ====================================================================== */
+
 .monaco-scrollable-element > .scrollbar > .slider {
     position: absolute !important;
     right: 2px !important;
-    width: 4px !important;
+    width: 3px !important;
     background: var(--accent) !important;
     left: auto !important;
-    border-radius: 4px !important;
-    opacity: 0.5 !important;
-    transition: opacity var(--transition) !important;
+    border-radius: 3px !important;
+    opacity: 0.35 !important;
+    transition: opacity var(--transition-fast), width var(--transition-fast) !important;
 }
 
 .monaco-scrollable-element > .scrollbar > .slider:hover {
-    opacity: 0.8 !important;
+    opacity: 0.7 !important;
+    width: 5px !important;
 }
 
-/* ── Tooltips / Hover widgets ───────────────────────────────────────── */
+/* ======================================================================
+   4. TOOLTIPS & HOVER WIDGETS
+   ====================================================================== */
+
 .monaco-editor-hover,
 .monaco-hover {
-    box-shadow: var(--shadow-md) !important;
-    background-image: var(--bg-gradient) !important;
-    backdrop-filter: blur(6px) !important;
+    box-shadow: var(--shadow-lg) !important;
+    background: var(--bg-raised) !important;
+    backdrop-filter: blur(12px) !important;
     border-radius: var(--radius-md) !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid var(--border-default) !important;
     outline: 0 !important;
 }
 
@@ -140,7 +236,10 @@
     border: none !important;
 }
 
-/* ── Title bar / Command center ─────────────────────────────────────── */
+/* ======================================================================
+   5. TITLE BAR & COMMAND CENTER
+   ====================================================================== */
+
 .monaco-workbench .part.titlebar > .titlebar-container > .titlebar-center > .window-title > .command-center .action-item.command-center-center {
     border: none !important;
     background: transparent !important;
@@ -154,31 +253,32 @@
 
 .search-label {
     font-family: var(--font-mono) !important;
-    font-size: 14px !important;
-    color: var(--text-primary);
+    font-size: 13px !important;
+    color: var(--text-secondary);
     display: block;
 }
 
-/* Scoped to title bar — avoids hiding icons in explorer, terminal, etc. */
+/* Scoped to title bar — avoids breaking icons elsewhere */
 .part.titlebar .search-icon { display: none !important; }
 .part.titlebar .codicon-search::before { display: none !important; }
-/* NOTE: codicon-arrow-right/left hiding removed — it broke find-widget
-   navigation, breadcrumbs, and terminal tab arrows. */
-/* NOTE: Window controls in titlebar-right are hidden for minimal UI.
-   Use keyboard shortcuts or taskbar to manage the window. */
 .titlebar-right > * { display: none !important; }
 .command-center-center { width: auto !important; }
 
-/* ── Command Palette ────────────────────────────────────────────────── */
+/* ======================================================================
+   6. COMMAND PALETTE
+   ====================================================================== */
+
 .quick-input-widget {
     transform: translateY(-50%) !important;
     top: 50% !important;
-    box-shadow: var(--shadow-lg) !important;
-    padding: 12px 12px 18px 12px !important;
-    background-image: var(--bg-gradient) !important;
-    backdrop-filter: blur(8px) !important;
-    border-radius: var(--radius-lg) !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    max-width: 680px !important;
+    width: 90% !important;
+    box-shadow: var(--shadow-lg), var(--shadow-glow) !important;
+    padding: 8px !important;
+    background: var(--bg-surface) !important;
+    backdrop-filter: blur(16px) saturate(1.2) !important;
+    border-radius: var(--radius-xl) !important;
+    border: 1px solid var(--border-default) !important;
 }
 
 .quick-input-list,
@@ -186,24 +286,37 @@
     min-height: 400px !important;
 }
 
-/* List row backgrounds: transparent for clean look (scoped to quick-input) */
+/* Transparent list backgrounds (scoped) */
 .quick-input-widget .monaco-list-rows {
     background: transparent !important;
 }
 
+/* List row styling */
+.quick-input-widget .monaco-list .monaco-list-row {
+    border-radius: var(--radius-sm) !important;
+    margin: 1px 4px !important;
+    padding: 0 8px !important;
+}
+
+.quick-input-widget .monaco-list .monaco-list-row.focused {
+    background: var(--accent-dim) !important;
+}
+
 /* Command palette: input field */
 .quick-input-filter .monaco-inputbox {
-    border-radius: var(--radius-md) !important;
-    padding: 14px 16px !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: var(--radius-lg) !important;
+    padding: 12px 16px !important;
+    border: 1px solid var(--border-subtle) !important;
+    background: var(--bg-raised) !important;
     font-family: var(--font-mono) !important;
-    font-size: 16px !important;
-    margin-bottom: 12px !important;
-    transition: border-color var(--transition) !important;
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+    transition: border-color var(--transition), box-shadow var(--transition) !important;
 }
 
 .quick-input-filter .monaco-inputbox.synthetic-focus {
     border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px var(--accent-dim) !important;
 }
 
 /* Command palette: backdrop blur overlay */
@@ -211,13 +324,13 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.35);
     top: 0;
     left: 0;
     z-index: 2500;
-    backdrop-filter: blur(var(--blur-strength));
+    backdrop-filter: blur(var(--blur-strength)) saturate(0.8);
     opacity: 0;
-    transition: opacity 200ms ease;
+    transition: opacity var(--transition-slow);
     pointer-events: none;
 }
 
@@ -227,7 +340,7 @@
 
 /* Inline action bar alignment */
 .quick-input-inline-action-bar .actions-container .action-item {
-    margin-bottom: 12px !important;
+    margin-bottom: 8px !important;
 }
 
 .quick-input-header {
@@ -239,16 +352,51 @@
     color: var(--text-muted) !important;
 }
 
-/* ── Editor watermark ───────────────────────────────────────────────── */
+/* ======================================================================
+   7. EDITOR TABS
+   ====================================================================== */
+
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container,
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container .tab,
+.monaco-workbench .part.editor > .content .editor-group-container > .title {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Active tab accent */
+.monaco-workbench .part.editor .tabs-container .tab.active {
+    border-bottom: 2px solid var(--accent) !important;
+}
+
+/* Inactive tab: dim */
+.monaco-workbench .part.editor .tabs-container .tab:not(.active) {
+    opacity: 0.6 !important;
+    transition: opacity var(--transition-fast) !important;
+}
+
+.monaco-workbench .part.editor .tabs-container .tab:not(.active):hover {
+    opacity: 0.85 !important;
+}
+
+/* ======================================================================
+   8. EDITOR WATERMARK
+   ====================================================================== */
+
 .editor-group-watermark {
     max-width: none !important;
 }
 
 .letterpress {
     width: 80% !important;
+    opacity: 0.04 !important;
 }
 
-/* ── Font consistency in Quick Open / Ctrl+P ────────────────────────── */
+/* ======================================================================
+   9. FONT CONSISTENCY
+   ====================================================================== */
+
 .quick-input-widget .quick-input-filter .monaco-inputbox input,
 .quick-input-widget .quick-input-filter .monaco-inputbox input::placeholder,
 .quick-input-widget .quick-input-list .monaco-list-row .label-name,
@@ -261,12 +409,67 @@
     font-family: var(--font-mono) !important;
 }
 
-/* ── Editor tabs ────────────────────────────────────────────────────── */
-.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
-.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container,
-.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container .tab,
-.monaco-workbench .part.editor > .content .editor-group-container > .title {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+/* ======================================================================
+   10. PANELS (Terminal, Output, Debug Console)
+   ====================================================================== */
+
+/* Panel header tabs */
+.part.panel .composite.title .action-label {
+    font-family: var(--font-ui) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Terminal container */
+.monaco-workbench .part.panel {
+    border-top: 1px solid var(--border-subtle) !important;
+}
+
+/* ======================================================================
+   11. NOTIFICATIONS
+   ====================================================================== */
+
+.monaco-workbench .notifications-center,
+.monaco-workbench .notification-toast {
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-lg) !important;
+    border: 1px solid var(--border-default) !important;
+}
+
+/* ======================================================================
+   12. CONTEXT MENUS
+   ====================================================================== */
+
+.shadow-root-host .monaco-menu {
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-lg) !important;
+    border: 1px solid var(--border-default) !important;
+    backdrop-filter: blur(12px) !important;
+}
+
+/* ======================================================================
+   13. MINIMAP (if re-enabled)
+   ====================================================================== */
+
+.minimap-shadow-visible {
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* ======================================================================
+   14. ACTIVITY BAR (minimal)
+   ====================================================================== */
+
+.monaco-workbench .part.activitybar .action-item .active-item-indicator {
+    border-color: var(--accent) !important;
+}
+
+/* ======================================================================
+   15. BREADCRUMBS
+   ====================================================================== */
+
+.monaco-breadcrumbs {
+    font-family: var(--font-mono) !important;
+    font-size: 12px !important;
 }

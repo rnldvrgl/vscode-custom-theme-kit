@@ -288,10 +288,7 @@
     "https://biomejs.dev": true,
   },
 
-  // ─── Theme ───────────────────────────────────────────────────────────
-  "workbench.colorTheme": "GitHub Dark",
-  "workbench.iconTheme": "catppuccin-mocha",
-
+  // ─── Token Customizations ────────────────────────────────────────────
   // Remove italic/bold from these token scopes
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -313,9 +310,8 @@
   },
 
   // ─── Custom CSS + JS (be5invis.vscode-custom-css) ───────────────────
-  // Use local file:// paths while developing, switch to raw GitHub URLs after pushing
   "vscode_custom_css.imports": [
-    "file:///C:/Users/DelaC/Documents/Projects/vscode-custom-theme-kit/custom-vscode.css",
-    "file:///C:/Users/DelaC/Documents/Projects/vscode-custom-theme-kit/vscode-script.js",
+    "https://raw.githubusercontent.com/rnldvrgl/vscode-custom-theme-kit/main/custom-vscode.css",
+    "https://raw.githubusercontent.com/rnldvrgl/vscode-custom-theme-kit/main/vscode-script.js",
   ],
 }

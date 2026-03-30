@@ -28,7 +28,6 @@ This kit **never overrides your selected theme's colors**. It inherits everythin
 | `custom-vscode.css` | 20 sections of UI polish — pill tabs, vibrancy, rounded corners, macOS scrollbars, frosted glass menus |
 | `vscode-script.js` | Command palette backdrop blur, idle sidebar dimming (90s), sash drag glow |
 | `settings.json` | Opinionated editor settings + Vim keybinds (grouped by extension, easy to cherry-pick) |
-| `settings-vim.json` | Reference file for advanced Vim keybindings (not loaded by VS Code) |
 
 ---
 

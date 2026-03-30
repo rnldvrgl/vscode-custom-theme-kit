@@ -14,7 +14,7 @@
   "editor.formatOnSave": false,
   "editor.guides.indentation": false,
   "editor.hideCursorInOverviewRuler": true,
-  "editor.hover.delay": 1500,
+  "editor.hover.delay": 300,
   "editor.hover.enabled": "on",
   "editor.inlineSuggest.enabled": true,
   "editor.inlineSuggest.suppressSuggestions": true,

@@ -1,16 +1,19 @@
 /* ======================================================================
-   VS Code Custom Theme Kit — Modern Minimal
+   VS Code Custom Theme Kit — Apple Minimal
    ======================================================================
    This kit adds layout, spacing, and polish on TOP of your selected
    VS Code theme. It inherits all colors from the active theme via
    --vscode-* CSS variables. Only --accent is user-configurable.
+
+   Design language: macOS / Safari — pill tabs, vibrancy surfaces,
+   generous radii, depth through shadows, smooth spring transitions.
    ====================================================================== */
 
 :root {
     /* ── Accent (change this to any color you like) ─────────────── */
     --accent: #818cf8;
-    --accent-dim: rgba(129, 140, 248, 0.12);
-    --accent-mid: rgba(129, 140, 248, 0.25);
+    --accent-dim: rgba(129, 140, 248, 0.10);
+    --accent-mid: rgba(129, 140, 248, 0.22);
     --accent-glow: rgba(129, 140, 248, 0.06);
 
     /* ── Surfaces (inherited from active theme) ─────────────────── */
@@ -24,29 +27,30 @@
     --text-secondary: var(--vscode-descriptionForeground, var(--vscode-foreground));
     --text-muted: var(--vscode-disabledForeground, rgba(128, 128, 128, 0.55));
 
-    /* ── Borders ────────────────────────────────────────────────── */
-    --border-subtle: rgba(255, 255, 255, 0.06);
-    --border-default: rgba(255, 255, 255, 0.09);
+    /* ── Borders (Apple: prefer shadows over borders) ───────────── */
+    --border-subtle: rgba(255, 255, 255, 0.04);
+    --border-default: rgba(255, 255, 255, 0.07);
     --border-focus: var(--accent);
 
-    /* ── Blur & Motion ──────────────────────────────────────────── */
-    --blur-strength: 12px;
-    --transition-fast: 120ms ease;
-    --transition: 180ms ease;
-    --transition-slow: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    /* ── Blur & Motion (macOS-style springs) ────────────────────── */
+    --blur-strength: 16px;
+    --transition-fast: 100ms cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition: 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-slow: 320ms cubic-bezier(0.32, 0.72, 0, 1);
 
-    /* ── Radii ──────────────────────────────────────────────────── */
-    --radius-xs: 4px;
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
+    /* ── Radii (Apple: generous, consistent) ────────────────────── */
+    --radius-xs: 5px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
 
-    /* ── Shadows ─────────────────────────────────────────────────── */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.14);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.28);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.04);
-    --shadow-glow: 0 0 24px rgba(129, 140, 248, 0.08);
+    /* ── Shadows (Apple: layered, diffuse) ──────────────────────── */
+    --shadow-sm: 0 0.5px 1px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.16), 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.32), 0 0 0 0.5px rgba(255,255,255,0.06);
+    --shadow-glow: 0 0 20px rgba(129, 140, 248, 0.06);
+    --shadow-pill: 0 1px 3px rgba(0, 0, 0, 0.16), 0 0 0 0.5px rgba(255,255,255,0.06);
 
     /* ── Typography ─────────────────────────────────────────────── */
     --font-mono: 'JetBrainsMono NFM', 'JetBrains Mono', 'Fira Code', monospace;
@@ -81,6 +85,7 @@
     border-radius: var(--radius-md) !important;
     box-shadow: var(--shadow-md) !important;
     border: 1px solid var(--border-default) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
     backdrop-filter: blur(8px) !important;
     background: var(--bg-raised) !important;
 }
@@ -130,19 +135,20 @@
 }
 
 /* ======================================================================
-   2. SIDEBAR
+   2. SIDEBAR (macOS Finder-style)
    ====================================================================== */
 
 .part.sidebar {
-    box-shadow: var(--shadow-sm);
+    box-shadow: 1px 0 0 var(--border-subtle);
 }
 
-/* Selected row */
+/* Selected row — soft pill highlight, no left border */
 .part.sidebar .monaco-list .monaco-list-row.selected {
     background-color: var(--accent-dim) !important;
     opacity: 1 !important;
-    border-left: 2px solid var(--accent) !important;
-    border-radius: var(--radius-xs) !important;
+    border-left: none !important;
+    border-radius: var(--radius-sm) !important;
+    margin: 1px 6px !important;
     transition: background-color var(--transition);
 }
 
@@ -150,11 +156,13 @@
 .part.sidebar .monaco-list .monaco-list-row.focused {
     background-color: rgba(255, 255, 255, 0.03) !important;
     outline: none !important;
+    border-radius: var(--radius-sm) !important;
 }
 
-/* Hover row */
+/* Hover row — gentle reveal */
 .part.sidebar .monaco-list .monaco-list-row:hover:not(.selected) {
-    background-color: rgba(255, 255, 255, 0.02) !important;
+    background-color: rgba(255, 255, 255, 0.025) !important;
+    border-radius: var(--radius-sm) !important;
 }
 
 /* Selected item label */
@@ -181,9 +189,9 @@
     font-size: 13px !important;
 }
 
-/* Sidebar: top scroll shadow */
+/* Sidebar: top scroll shadow — softer, more diffuse */
 .monaco-scrollable-element > .shadow.top {
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     top: -3px !important;
 }
 
@@ -204,23 +212,27 @@
 }
 
 /* ======================================================================
-   3. SCROLLBAR
+   3. SCROLLBAR (macOS overlay-style)
    ====================================================================== */
 
 .monaco-scrollable-element > .scrollbar > .slider {
     position: absolute !important;
     right: 2px !important;
-    width: 3px !important;
-    background: var(--accent) !important;
+    width: 6px !important;
+    background: var(--text-muted) !important;
     left: auto !important;
-    border-radius: 3px !important;
-    opacity: 0.35 !important;
-    transition: opacity var(--transition-fast), width var(--transition-fast) !important;
+    border-radius: 100px !important;
+    opacity: 0 !important;
+    transition: opacity 0.4s ease, width var(--transition-fast) !important;
+}
+
+.monaco-scrollable-element:hover > .scrollbar > .slider {
+    opacity: 0.3 !important;
 }
 
 .monaco-scrollable-element > .scrollbar > .slider:hover {
-    opacity: 0.7 !important;
-    width: 5px !important;
+    opacity: 0.5 !important;
+    width: 8px !important;
 }
 
 /* ======================================================================
@@ -231,6 +243,7 @@
 .monaco-hover {
     box-shadow: var(--shadow-lg) !important;
     background: var(--bg-raised) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
     backdrop-filter: blur(12px) !important;
     border-radius: var(--radius-md) !important;
     border: 1px solid var(--border-default) !important;
@@ -279,6 +292,7 @@
     box-shadow: var(--shadow-lg), var(--shadow-glow) !important;
     padding: 8px !important;
     background: var(--bg-surface) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
     backdrop-filter: blur(16px) saturate(1.2) !important;
     border-radius: var(--radius-xl) !important;
     border: 1px solid var(--border-default) !important;
@@ -331,6 +345,7 @@
     top: 0;
     left: 0;
     z-index: 2500;
+    -webkit-backdrop-filter: blur(var(--blur-strength)) saturate(0.8);
     backdrop-filter: blur(var(--blur-strength)) saturate(0.8);
     opacity: 0;
     transition: opacity var(--transition-slow);
@@ -356,9 +371,10 @@
 }
 
 /* ======================================================================
-   7. EDITOR TABS
+   7. EDITOR TABS (Safari-style floating pills)
    ====================================================================== */
 
+/* Ensure tab structure is visible */
 .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-and-actions-container,
 .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container,
 .monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container .tab,
@@ -368,19 +384,78 @@
     opacity: 1 !important;
 }
 
-/* Active tab accent */
-.monaco-workbench .part.editor .tabs-container .tab.active {
-    border-bottom: 2px solid var(--accent) !important;
+/* Tab bar — clean background, breathing room */
+.monaco-workbench .part.editor > .content .editor-group-container > .title {
+    padding: 4px 8px 4px 8px !important;
+    background: var(--bg-base) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* Inactive tab: dim */
+/* Tab container — flex with gaps for pill spacing */
+.monaco-workbench .part.editor > .content .editor-group-container > .title .tabs-container {
+    gap: 3px !important;
+    align-items: center !important;
+    height: auto !important;
+}
+
+/* All tabs — pill shape, no borders, smooth transitions */
+.monaco-workbench .part.editor .tabs-container .tab {
+    border-radius: var(--radius-sm) !important;
+    border: none !important;
+    border-bottom: none !important;
+    padding: 4px 14px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    background: transparent !important;
+    transition: background-color var(--transition), opacity var(--transition), box-shadow var(--transition) !important;
+}
+
+/* Active tab — floating pill with subtle elevation */
+.monaco-workbench .part.editor .tabs-container .tab.active {
+    background: rgba(255, 255, 255, 0.07) !important;
+    box-shadow: var(--shadow-pill) !important;
+    border-bottom: none !important;
+    opacity: 1 !important;
+}
+
+/* Active tab label — full brightness */
+.monaco-workbench .part.editor .tabs-container .tab.active .label-name {
+    opacity: 1 !important;
+}
+
+/* Inactive tabs — ghost style, just text */
 .monaco-workbench .part.editor .tabs-container .tab:not(.active) {
-    opacity: 0.6 !important;
+    opacity: 0.5 !important;
+    background: transparent !important;
+}
+
+/* Inactive hover — gentle surface reveal */
+.monaco-workbench .part.editor .tabs-container .tab:not(.active):hover {
+    opacity: 0.8 !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+}
+
+/* Remove default tab separators */
+.monaco-workbench .part.editor .tabs-container .tab::after,
+.monaco-workbench .part.editor .tabs-container .tab::before {
+    border: none !important;
+}
+
+/* Tab close button — subtle, appears on hover */
+.monaco-workbench .part.editor .tabs-container .tab .tab-close {
+    opacity: 0 !important;
     transition: opacity var(--transition-fast) !important;
 }
 
-.monaco-workbench .part.editor .tabs-container .tab:not(.active):hover {
-    opacity: 0.85 !important;
+.monaco-workbench .part.editor .tabs-container .tab:hover .tab-close,
+.monaco-workbench .part.editor .tabs-container .tab.active .tab-close {
+    opacity: 0.6 !important;
+}
+
+.monaco-workbench .part.editor .tabs-container .tab .tab-close:hover {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: var(--radius-xs) !important;
 }
 
 /* ======================================================================
@@ -416,9 +491,28 @@
    10. PANELS (Terminal, Output, Debug Console)
    ====================================================================== */
 
-/* Terminal container */
+/* Panel container — soft top edge */
 .monaco-workbench .part.panel {
-    border-top: 1px solid var(--border-subtle) !important;
+    border-top: none !important;
+    box-shadow: 0 -1px 0 var(--border-subtle) !important;
+}
+
+/* Panel tabs — pill-style, matching editor tabs */
+.monaco-workbench .part.panel > .composite.title .panel-switcher-container .action-item.checked {
+    border-bottom: none !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: var(--shadow-pill) !important;
+}
+
+.monaco-workbench .part.panel > .composite.title .panel-switcher-container .action-item {
+    border-radius: var(--radius-sm) !important;
+    border-bottom: none !important;
+    transition: background-color var(--transition) !important;
+}
+
+.monaco-workbench .part.panel > .composite.title .panel-switcher-container .action-item:hover:not(.checked) {
+    background: rgba(255, 255, 255, 0.03) !important;
 }
 
 /* Terminal selection */
@@ -427,25 +521,42 @@
 }
 
 /* ======================================================================
-   11. NOTIFICATIONS
+   11. NOTIFICATIONS (macOS banner-style)
    ====================================================================== */
 
 .monaco-workbench .notifications-center,
 .monaco-workbench .notification-toast {
-    border-radius: var(--radius-md) !important;
+    border-radius: var(--radius-lg) !important;
     box-shadow: var(--shadow-lg) !important;
-    border: 1px solid var(--border-default) !important;
+    border: 1px solid var(--border-subtle) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+    backdrop-filter: blur(20px) saturate(1.2) !important;
+    overflow: hidden !important;
 }
 
 /* ======================================================================
-   12. CONTEXT MENUS
+   12. CONTEXT MENUS (macOS dropdown-style)
    ====================================================================== */
 
 .shadow-root-host .monaco-menu {
     border-radius: var(--radius-md) !important;
     box-shadow: var(--shadow-lg) !important;
-    border: 1px solid var(--border-default) !important;
-    backdrop-filter: blur(12px) !important;
+    border: 1px solid var(--border-subtle) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(1.4) !important;
+    backdrop-filter: blur(24px) saturate(1.4) !important;
+    padding: 4px !important;
+    overflow: hidden !important;
+}
+
+/* Menu items — rounded hover state */
+.shadow-root-host .monaco-menu .action-item {
+    border-radius: var(--radius-xs) !important;
+    margin: 1px 4px !important;
+}
+
+.shadow-root-host .monaco-menu .action-item.focused {
+    background: var(--accent-dim) !important;
+    border-radius: var(--radius-xs) !important;
 }
 
 /* ======================================================================
@@ -457,11 +568,21 @@
 }
 
 /* ======================================================================
-   14. ACTIVITY BAR (minimal)
+   14. ACTIVITY BAR (macOS Dock-style minimal)
    ====================================================================== */
 
+/* Active indicator — small dot instead of full bar */
 .monaco-workbench .part.activitybar .action-item .active-item-indicator {
     border-color: var(--accent) !important;
+}
+
+/* Activity bar icons — smooth hover */
+.monaco-workbench .part.activitybar .action-item {
+    transition: transform var(--transition) !important;
+}
+
+.monaco-workbench .part.activitybar .action-item:hover {
+    transform: scale(1.08) !important;
 }
 
 /* ======================================================================
@@ -553,7 +674,50 @@
 
 .debug-toolbar {
     background: var(--bg-raised) !important;
-    border: 1px solid var(--border-default) !important;
-    border-radius: var(--radius-md) !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: var(--radius-lg) !important;
     box-shadow: var(--shadow-md) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.2) !important;
+    backdrop-filter: blur(20px) saturate(1.2) !important;
+}
+
+/* ======================================================================
+   20. GLOBAL APPLE POLISH
+   ====================================================================== */
+
+/* All borders should feel invisible until needed */
+.monaco-workbench .part.editor,
+.monaco-workbench .part.sidebar,
+.monaco-workbench .part.panel {
+    transition: box-shadow var(--transition-slow) !important;
+}
+
+/* Input fields — rounded, soft focus ring */
+.monaco-inputbox {
+    border-radius: var(--radius-sm) !important;
+    transition: border-color var(--transition), box-shadow var(--transition) !important;
+}
+
+.monaco-inputbox.synthetic-focus {
+    box-shadow: 0 0 0 3px var(--accent-dim) !important;
+    border-color: var(--accent) !important;
+}
+
+/* Buttons — pill-shaped */
+.monaco-button {
+    border-radius: var(--radius-sm) !important;
+    transition: background-color var(--transition), transform 80ms ease !important;
+}
+
+.monaco-button:active {
+    transform: scale(0.97) !important;
+}
+
+/* Lists everywhere — rounded selection */
+.monaco-list .monaco-list-row.selected {
+    border-radius: var(--radius-xs) !important;
+}
+
+.monaco-list .monaco-list-row.focused {
+    outline: none !important;
 }
